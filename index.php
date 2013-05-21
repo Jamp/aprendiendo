@@ -1,20 +1,23 @@
 <?php
 
-$conexion = mysql_connect('127.0.0.1', 'root', ''); // localhost = 127.0.0.1
+$conexion = new mysqli('localhost', 'root', '', 'prueba'); // localhost = 127.0.0.1
 
 if ($conexion) {
 	echo "Conectado<br>";
-	mysql_select_db('prueba');
-	$result = mysql_query("SELECT * FROM `prueba`");
-
-	while ($fila = mysql_fetch_object($result)) {
-		echo "ID: " , $fila->id , " Nombre: " ,
-		$fila->nombre , " Informaci&oacute;n: " ,
-		$fila->informacion , "<br>";
+	$result = $conexion->query("SELECT `id`, `nombre`, `informacion FROM `prueba` WHERE nombre LIKE 'j%'");
+	echo $conexion->error;
+	while ($fila = $result->fetch_object() ) {
+		echo "ID: " , $fila->id ,
+		" Nombre: " , ConvertirPrimeraLetraEnMayusculas($fila->nombre) ,
+		" Informaci&oacute;n: " , $fila->informacion , "<br>";
 	}
 
-	mysql_close($conexion);
+	$conexion->close();
 	echo "Cerrado<br>";
+}
+
+function ConvertirPrimeraLetraEnMayusculas($cadena) { // Buenas Prácticas CamellCase
+	return ucfirst($cadena);
 }
 
 ?>
