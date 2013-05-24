@@ -1,0 +1,9 @@
+git init (Inicializar un REPO VACIO)
+git clone <URL> (Clonamos un REPO existente)
+
+git status (Conocer el status de los archivos dentro del REPO)
+git add <ARCHIVO> (Agregar cambios para luego hacerlos permanente en el commit)
+git commit -m "<MENSAJE>" (Hacer permanente los cambios en el REPO)
+git push (Enviar cambios locales al REPO remoto)
+git pull (Halar cambios desde REPO remoto a local)
+git log (Lista el historico de cambios de locales)
